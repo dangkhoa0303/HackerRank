@@ -10,29 +10,35 @@ public class Solution {
 		int T, N;
 
 		T = input.nextInt();
-		
-		for (int i=0; i<T; i++) {
+
+		for (int i = 0; i < T; i++) {
 			N = input.nextInt();
 			boolean check = false;
 			int array[] = new int[N];
-			
-			for (int j=0; j<N; j++) {
+
+			for (int j = 0; j < N; j++) {
 				array[j] = input.nextInt();
 			}
-			
-			int start = 0, end = N-1, sumL = 0, sumR = 0;
+
+			int start = 0, end = N - 1, sumL = array[start], sumR = array[end];
 			while (start <= end) {
-				sumL += array[start];
-				sumR += array[end];
-				
-				if (sumL==sumR) {
-					if (start==end) {
+				if (sumL < sumR) {
+					start++;
+					sumL += array[start];
+				}
+				if (sumL > sumR) {
+					end--;
+					sumR += array[end];
+				}
+				if (sumL == sumR) {
+					if (start == end) {
 						check = true;
 						break;
+					} else {
+						start++;
+						sumL += array[start];
 					}
 				}
-				start++; 
-				end--;
 			}
 			if (check) {
 				System.out.println("YES");
