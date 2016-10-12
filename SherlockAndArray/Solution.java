@@ -20,11 +20,23 @@ public class Solution {
 				array[j] = input.nextInt();
 			}
 
+			if (N == 1 || (N == 2 && array[0] == array[1])) {
+				System.out.println("YES");
+				continue;
+			} else {
+				if (N == 2 && array[0] != array[1]) {
+					System.out.println("NO");
+					continue;
+				}
+			}
+
 			int start = 0, end = N - 1, sumL = array[start], sumR = array[end];
 			while (start <= end) {
 				if (sumL < sumR) {
 					start++;
 					sumL += array[start];
+				} else {
+
 				}
 				if (sumL > sumR) {
 					end--;
